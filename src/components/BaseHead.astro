@@ -7,6 +7,27 @@ interface Props {
 }
 const { title, description, canonicalUrl, image = '/images/fortis-fit-1.jpg' } = Astro.props;
 const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Jam berapa Fortis Fit Jambi buka?",
+      acceptedAnswer: { "@type": "Answer", text: "Sesuai bio Instagram resmi @fortisfit_jambi: Senin–Jumat pukul 07.00–22.00 dan Sabtu–Minggu pukul 07.00–18.00 WIB." }
+    },
+    {
+      "@type": "Question",
+      name: "Apakah ada free trial di Fortis Fit Jambi?",
+      acceptedAnswer: { "@type": "Answer", text: "Ya, tersedia free trial 1x plus konsultasi. Slot trial dikonfirmasi via WhatsApp 0812-9933-3289 (nomor resmi dari bio IG)." }
+    },
+    {
+      "@type": "Question",
+      name: "Kelas apa saja yang tersedia di Fortis Fit Jambi?",
+      acceptedAnswer: { "@type": "Answer", text: "Selain area beban dan kardio, tersedia kelas grup seperti aerobik dan yoga serta fasilitas sauna dan kamar mandi. Jadwal kelas mengikuti postingan Instagram resmi." }
+    }
+  ]
+};
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -18,10 +39,13 @@ const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow" />
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="id_ID" />
+<meta property="og:site_name" content="Fortis Fit Jambi — Gym Keras, Kelas Seru" />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content="Rak dumbel area beban Fortis Fit Jambi" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalUrl} />
 <meta property="twitter:title" content={title} />
@@ -34,8 +58,12 @@ const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
   url: "https://fortisfit-jambi.pages.dev",
   image: ogImage,
   description: description,
+  exerciseType: ["Aerobics", "Yoga", "Sauna"],
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "07:00", closes: "22:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday","Sunday"], opens: "07:00", closes: "18:00" }
+  ],
   address: { "@type": "PostalAddress", addressLocality: "Kota Jambi", addressRegion: "Jambi", addressCountry: "ID" },
-  telephone: "+62-812-9933-3289",
-  openingHours: ["Mo-Fr 07:00-22:00", "Sa-Su 07:00-18:00"],
   sameAs: ["https://www.instagram.com/fortisfit_jambi"]
 })} />
+<script type="application/ld+json" set:html={JSON.stringify(faq)} />

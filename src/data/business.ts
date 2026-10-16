@@ -12,9 +12,9 @@ export const business = {
   address: 'Kota Jambi — alamat lengkap konfirmasi via IG/WA',
   // TERVERIFIKASI bio IG: Weekdays 7am-10pm, Weekends 7am-6pm
   hours: 'Senin–Jumat 07.00–22.00, Sabtu–Minggu 07.00–18.00 WIB',
-  title: 'Fortis Fit Jambi — Gym + Kelas, Free Trial via WA',
+  title: 'Fortis Fit Jambi — Gym + Aerobik, Yoga & Sauna, Free Trial',
   description:
-    'Fortis Fit Jambi: gym + kelas, kamar mandi, buka Senin–Jumat 07.00–22.00 & weekend 07.00–18.00. Trial & price list via WA 0812-9933-3289.',
+    'Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289.',
   canonicalPath: '/',
   ogImage: '/images/fortis-fit-1.jpg',
 };

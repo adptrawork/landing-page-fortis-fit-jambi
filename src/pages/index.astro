@@ -1,85 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { business, programs, waLink } from '../data/business';
+import { business, programs, prices, waLink } from '../data/business';
 const heroCta = waLink(`Halo ${business.name}, saya mau tanya free trial. Apakah slot masih ada?`);
+const stats = ['Aerobik', 'Yoga', 'Sauna', 'Kamar Mandi', 'Beban Bebas', 'Kardio', 'Kelas Grup', 'Free Trial'];
 ---
-<BaseLayout title={business.title} description={business.description} canonicalPath="/" image={business.ogImage}>
-  <section class="max-w-7xl mx-auto px-4 w-full">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[88dvh] py-10">
-      <div class="md:col-span-7">
-        <p class="flex items-center gap-2 text-sm font-medium text-rose-700">
-          <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M128 16l36 74 82 12-59 58 14 82-73-38-73 38 14-82-59-58 82-12z"/></svg>
-          <span class="font-mono-num">{business.followers}</span>
-          <span class="text-zinc-500">• Gym + Kelas • Kota Jambi</span>
-        </p>
-        <h1 class="mt-4 text-4xl md:text-6xl tracking-tighter leading-none font-bold">Fortis Fit Jambi — Gym + Kelas, Coba Dulu Baru Member</h1>
-        <p class="mt-5 text-base text-gray-600 leading-relaxed max-w-[65ch]">Ada area beban & kardio, kelas grup, dan kamar mandi. {business.hours}. Price list ada di reel IG — konfirmasi trial via WA 0812-9933-3289.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href={heroCta} class="bg-rose-700 text-white px-7 py-3.5 rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]">Minta Free Trial</a>
-          <a href="/harga" class="border border-zinc-300 px-7 py-3.5 rounded-full font-medium hover:border-zinc-950 active:scale-[0.98]">Lihat Harga</a>
-        </div>
-        <div class="mt-8 flex divide-x divide-zinc-200 border-t border-zinc-200 pt-5 text-sm">
-          <div class="pr-6"><p class="font-mono-num font-semibold">07–22</p><p class="text-zinc-500">Weekday</p></div>
-          <div class="px-6"><p class="font-mono-num font-semibold">07–18</p><p class="text-zinc-500">Weekend</p></div>
-          <div class="pl-6"><p class="font-mono-num font-semibold">0812-9933-3289</p><p class="text-zinc-500">WA resmi (bio IG)</p></div>
-        </div>
+<BaseLayout title="Fortis Fit Jambi — Gym + Aerobik, Yoga & Sauna, Free Trial" description="Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289." canonicalPath="/" image={business.ogImage}>
+  <!-- FULL-BLEED HERO (Standard Hero Paradigm, left aligned) -->
+  <section class="relative w-full overflow-hidden bg-stone-900 text-orange-50" aria-labelledby="hero">
+    <img src="/images/fortis-fit-1.jpg" alt="Rak dumbel area beban gym Fortis Fit Jambi" width="1600" height="900" loading="eager" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/72 to-stone-900/25" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-orange-50" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 pt-20 pb-36 md:pt-28 md:pb-48">
+      <p class="burst inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-300 border border-orange-300/40 rounded-full px-4 py-1.5 bg-stone-900/60">
+        {business.followers} &bull; Gym + Kelas &bull; Jambi
+      </p>
+      <h1 id="hero" class="burst d1 mt-5 max-w-[16ch] text-4xl md:text-6xl tracking-tighter leading-[0.95] font-black uppercase">Keringat dulu, alasan belakangan</h1>
+      <p class="burst d2 mt-5 max-w-[52ch] text-base text-orange-100/85 leading-relaxed">Fortis Fit Jambi: area beban &amp; kardio, kelas grup, kamar mandi. {business.hours}. Price list ada di reel IG — amankan trial-mu via WA 0812-9933-3289.</p>
+      <div class="burst d3 mt-8 flex flex-wrap gap-3">
+        <a href={heroCta} class="bg-orange-700 text-white px-8 py-4 rounded-full font-black uppercase tracking-wide text-sm transition-all duration-300 hover:bg-orange-600 hover:-translate-y-0.5 active:scale-[0.98]" style="transition-timing-function:cubic-bezier(0.16,1,0.3,1)">Klaim Free Trial</a>
+        <a href="/harga" class="border border-orange-100/50 px-8 py-4 rounded-full font-bold uppercase tracking-wide text-sm hover:bg-orange-50 hover:text-stone-900 active:scale-[0.98]">Lihat Harga</a>
       </div>
-      <div class="md:col-span-5">
-        <div class="bg-white border border-slate-200/50 rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
-          <img src="/images/fortis-fit-1.jpg" alt="Rak dumbel area beban gym Fortis Fit Jambi" width="800" height="600" loading="eager" fetchpriority="high" class="w-full aspect-[4/3] object-cover" />
+      <dl class="burst d4 mt-10 flex divide-x divide-orange-100/25 border-t border-orange-100/25 pt-5 text-sm max-w-xl">
+        <div class="pr-6"><dt class="sr-only">Weekday</dt><dd class="font-mono-num font-bold text-lg">07–22</dd><dd class="text-orange-100/70">Senin–Jumat</dd></div>
+        <div class="px-6"><dt class="sr-only">Weekend</dt><dd class="font-mono-num font-bold text-lg">07–18</dd><dd class="text-orange-100/70">Sabtu–Minggu</dd></div>
+        <div class="pl-6"><dt class="sr-only">Kontak</dt><dd class="font-mono-num font-bold text-lg">0812-9933</dd><dd class="text-orange-100/70">WA resmi bio IG</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- KINETIC MARQUEE STATS -->
+  <section class="bg-orange-700 text-white py-4 -mt-2" aria-label="Fasilitas unggulan">
+    <div class="marquee">
+      <div class="marquee-track font-black uppercase tracking-widest text-sm md:text-base">
+        {[0, 1].map((k) => (
+          <div class="flex shrink-0" aria-hidden={k === 1}>
+            {stats.map((s) => (<span class="px-6 py-1 whitespace-nowrap">{s} <span class="ml-6 text-orange-300">/</span></span>))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="max-w-7xl mx-auto px-4 py-14" aria-labelledby="program">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+      <div class="md:col-span-8">
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-orange-700">Program</p>
+        <h2 id="program" class="mt-2 text-3xl md:text-4xl tracking-tighter leading-none font-black uppercase">Gym, kelas, coaching</h2>
+      </div>
+      <p class="md:col-span-4 text-base text-stone-600">Label Terverifikasi = sesuai bio IG resmi. <a class="underline underline-offset-4 font-semibold" href="/program">Semua program</a></p>
+    </div>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div class="md:col-span-7">
+        <div class="bg-white border border-orange-700/20 rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)]">
+          <img src="/images/fortis-fit-2.jpg" alt="Suasana kelas grup aerobik di gym Fortis Fit Jambi" width="800" height="600" loading="lazy" class="w-full aspect-[16/9] object-cover" />
           <div class="p-8">
-            <p class="font-semibold text-lg tracking-tight">Gym + kelas dalam satu tempat</p>
-            <p class="mt-1 text-base text-gray-600">Latihan beban, ikut kelas, bilas di tempat. Weekend tutup 18.00 — datang lebih awal.</p>
+            <p class="font-black uppercase tracking-tight text-lg">Kelas grup yang bikin nagih</p>
+            <p class="text-base text-stone-600">Jadwal kelas cek highlight IG. <a class="underline underline-offset-4 font-semibold" href="/pelatih">Kenalan instruktur</a></p>
           </div>
         </div>
-        <p class="mt-3 text-xs text-zinc-400">Sumber: Unsplash (foto konteks area beban, bebas lisensi) — ganti foto asli gym.</p>
+      </div>
+      <div class="md:col-span-5 flex flex-col gap-6">
+        <div class="bg-stone-900 text-orange-50 rounded-[2.5rem] p-8 flex-1">
+          <p class="font-mono-num text-xs text-orange-300">TERVERIFIKASI BIO IG</p>
+          <p class="mt-2 font-black uppercase text-xl tracking-tight">Kamar mandi tersedia</p>
+          <p class="mt-1 text-sm text-orange-100/70">Latihan sebelum/sesudah aktivitas — bilas di tempat.</p>
+        </div>
+        <div class="bg-white border border-orange-700/20 rounded-[2.5rem] overflow-hidden">
+          <img src="/images/fortis-fit-3.jpg" alt="Coach mendampingi member latihan beban di Fortis Fit Jambi" width="800" height="600" loading="lazy" class="w-full aspect-[16/9] object-cover" />
+          <div class="p-6"><p class="font-bold">Personal training 1-on-1</p></div>
+        </div>
       </div>
     </div>
+    <p class="mt-3 text-xs text-stone-400">Foto konteks (Unsplash, bebas lisensi) — ganti foto asli gym.</p>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-      <div class="md:col-span-7"><div class="bg-white border border-slate-200/50 rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
-        <img src="/images/fortis-fit-2.jpg" alt="Suasana kelas grup aerobik di gym Fortis Fit Jambi" width="800" height="600" loading="lazy" class="w-full aspect-[16/9] object-cover" />
-        <div class="p-8">
-          <p class="font-semibold text-lg tracking-tight">Program: gym, kelas & personal training</p>
-          <p class="text-base text-gray-600">Label Terverifikasi = sesuai bio IG resmi. <a class="underline" href="/program">Lihat semua program</a>.</p>
-        </div>
-      </div></div>
-      <div class="md:col-span-5"><div class="bg-white border border-slate-200/50 rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
-        <img src="/images/fortis-fit-3.jpg" alt="Coach mendampingi member latihan beban di Fortis Fit Jambi" width="800" height="600" loading="lazy" class="w-full aspect-[16/9] object-cover" />
-        <div class="p-8">
-          <p class="font-semibold text-lg tracking-tight">Didampingi coach</p>
-          <p class="text-base text-gray-600">Pemula dibantu teknik dasar. <a class="underline" href="/pelatih">Kenalan dengan pelatih</a>.</p>
-        </div>
-      </div></div>
+  <!-- HARGA HORIZONTAL SNAP -->
+  <section class="py-14" aria-labelledby="harga">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+      <div class="md:col-span-8">
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-orange-700">Harga — geser</p>
+        <h2 id="harga" class="mt-2 text-3xl md:text-4xl tracking-tighter leading-none font-black uppercase">Mulai dari Rp 0</h2>
+      </div>
+      <p class="md:col-span-4 text-base text-stone-600">Estimasi — konfirmasi via WA. <a class="underline underline-offset-4 font-semibold" href="/harga">Semua harga</a></p>
     </div>
-    <p class="mt-3 text-xs text-zinc-400">Sumber: Unsplash (foto konteks kelas & coaching, bebas lisensi) — ganti foto asli gym.</p>
-  </section>
-
-  <section class="max-w-7xl mx-auto px-4 py-10">
-    <p class="text-sm font-medium text-rose-700">Harga</p>
-    <h2 class="mt-2 text-3xl md:text-4xl tracking-tighter leading-none font-bold">Mulai dari trial gratis</h2>
-    <p class="mt-3 text-base text-gray-600 max-w-[65ch]">Price list resmi ada di reel IG @fortisfit_jambi. Angka di bawah estimasi — wajib konfirmasi via WA. <a class="underline text-zinc-900" href="/harga">Lihat semua harga</a></p>
-    <div class="mt-6 grid grid-cols-1 md:grid-cols-12 gap-6">
-      {programs.slice(3, 5).map((p) => (
-        <div class="md:col-span-6"><div class="bg-white border border-slate-200/50 rounded-[2.5rem] overflow-hidden">
-          <img src={p.img} alt={p.alt} width="800" height="600" loading="lazy" class="w-full aspect-[16/9] object-cover" />
-          <div class="p-6"><p class="text-xs font-medium text-rose-700">{p.badge}</p><p class="font-semibold">{p.name}</p></div>
-        </div></div>
+    <div class="snap-rail no-scrollbar mt-8 flex gap-5 overflow-x-auto px-4 md:px-[max(1rem,calc((100vw-80rem)/2+1rem))] pb-2">
+      {prices.map((p, i) => (
+        <article class={`burst d${(i % 6) + 1} shrink-0 w-[82vw] sm:w-[380px] rounded-[2.5rem] p-8 border active:scale-[0.98] ${i === 0 ? 'bg-stone-900 text-orange-50 border-stone-900' : 'bg-white border-orange-700/20'}`}>
+          <p class={`font-mono-num text-xs font-bold ${i === 0 ? 'text-orange-300' : 'text-orange-700'}`}>0{i + 1} — {p.badge}</p>
+          <h3 class="mt-2 font-black uppercase tracking-tight text-xl leading-tight">{p.name}</h3>
+          <p class={`mt-2 font-mono-num font-bold text-2xl ${i === 0 ? 'text-white' : 'text-stone-900'}`}>{p.price}</p>
+          <p class={`mt-2 text-sm ${i === 0 ? 'text-orange-100/70' : 'text-stone-600'}`}>{p.desc}</p>
+          <a href={waLink(`Halo ${business.name}, saya mau tanya paket ${p.name} (${p.price}).`)} class={`dir-fill mt-6 inline-block px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wide border ${i === 0 ? 'border-orange-300/60' : 'border-stone-300'}`}>Tanya via WA</a>
+        </article>
       ))}
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 py-12">
+  <!-- LOKASI -->
+  <section class="max-w-7xl mx-auto px-4 py-14" aria-labelledby="lokasi">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-      <div class="md:col-span-5">
-        <p class="text-sm font-medium text-rose-700">Lokasi</p>
-        <h2 class="mt-2 text-3xl md:text-4xl tracking-tighter leading-none font-bold">Cek rute sebelum datang</h2>
-        <p class="mt-3 text-base text-gray-600 max-w-[65ch]">{business.address}. {business.hours}. <a class="underline text-zinc-900" href="/kontak">Hubungi & rute</a></p>
+      <div class="md:col-span-4">
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-orange-700">Lokasi</p>
+        <h2 id="lokasi" class="mt-2 text-3xl md:text-4xl tracking-tighter leading-none font-black uppercase">Datang sebelum tutup</h2>
+        <p class="mt-3 text-base text-stone-600 max-w-[65ch]">{business.address}. {business.hours}. <a class="underline underline-offset-4 font-semibold text-stone-900" href="/kontak">Hubungi &amp; rute</a></p>
       </div>
-      <div class="md:col-span-7">
-        <div class="rounded-[2.5rem] overflow-hidden border border-slate-200/50 aspect-video bg-zinc-100">
+      <div class="md:col-span-8">
+        <div class="rounded-[2.5rem] overflow-hidden border border-orange-700/20 aspect-video bg-orange-100">
           <iframe title="Peta Fortis Fit Jambi" src={business.mapsEmbed} loading="lazy" class="w-full h-full"></iframe>
         </div>
       </div>
