@@ -16,7 +16,7 @@ export const business = {
   description:
     'Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289.',
   canonicalPath: '/',
-  ogImage: '/images/fortis-fit-1.jpg',
+  ogImage: '/images/fortis-fit-1.webp',
 };
 
 export const waLink = (message: string) =>
@@ -27,35 +27,35 @@ export const programs = [
     name: 'Open Gym — Area Beban & Kardio',
     badge: 'Terverifikasi',
     desc: 'Gym + alat beban dan kardio. Bio IG resmi menyebut Gym.',
-    img: '/images/fortis-fit-1.jpg',
+    img: '/images/fortis-fit-1.webp',
     alt: 'Rak dumbel area beban gym Fortis Fit Jambi',
   },
   {
     name: 'Kelas Grup',
     badge: 'Terverifikasi',
     desc: 'Bio IG resmi menyebut Classes. Jadwal kelas cek highlight/postingan IG.',
-    img: '/images/fortis-fit-2.jpg',
+    img: '/images/fortis-fit-2.webp',
     alt: 'Suasana kelas grup aerobik di gym Fortis Fit Jambi',
   },
   {
     name: 'Personal Training',
     badge: 'Estimasi',
     desc: 'Program personal sesuai target. Ketersediaan & tarif konfirmasi via WA.',
-    img: '/images/fortis-fit-3.jpg',
+    img: '/images/fortis-fit-3.webp',
     alt: 'Coach mendampingi member latihan beban di Fortis Fit Jambi',
   },
   {
     name: 'Cek Kebugaran & Konsultasi',
     badge: 'Estimasi',
     desc: 'Asesmen awal sebelum program. Detail layanan konfirmasi via WA.',
-    img: '/images/fortis-fit-4.jpg',
+    img: '/images/fortis-fit-4.webp',
     alt: 'Asesmen kebugaran member sebelum mulai program di Fortis Fit Jambi',
   },
   {
     name: 'Fasilitas Bilas & Kamar Mandi',
     badge: 'Terverifikasi',
     desc: 'Bio IG resmi menyebut Bathrooms. Cocok latihan sebelum/sesudah aktivitas.',
-    img: '/images/fortis-fit-5.jpg',
+    img: '/images/fortis-fit-5.webp',
     alt: 'Sauna kayu area pemulihan Fortis Fit Jambi',
   },
 ];
@@ -88,9 +88,9 @@ export const prices = [
 ];
 
 export const gallery = [
-  { src: '/images/fortis-fit-1.jpg', alt: 'Rak dumbel area beban Fortis Fit Jambi', caption: 'Area beban — foto konteks, ganti foto asli' },
-  { src: '/images/fortis-fit-2.jpg', alt: 'Kelas grup aerobik Fortis Fit Jambi', caption: 'Kelas grup — foto konteks, ganti foto asli' },
-  { src: '/images/fortis-fit-3.jpg', alt: 'Sesi personal training Fortis Fit Jambi', caption: 'Coaching — foto konteks, ganti foto asli' },
-  { src: '/images/fortis-fit-4.jpg', alt: 'Asesmen kebugaran member Fortis Fit Jambi', caption: 'Asesmen — foto konteks, ganti foto asli' },
-  { src: '/images/fortis-fit-5.jpg', alt: 'Sauna kayu area pemulihan Fortis Fit Jambi', caption: 'Sauna & pemulihan — foto konteks, ganti foto asli' },
+  { src: '/images/fortis-fit-1.webp', alt: 'Rak dumbel area beban Fortis Fit Jambi', caption: 'Area beban — foto konteks, ganti foto asli' },
+  { src: '/images/fortis-fit-2.webp', alt: 'Kelas grup aerobik Fortis Fit Jambi', caption: 'Kelas grup — foto konteks, ganti foto asli' },
+  { src: '/images/fortis-fit-3.webp', alt: 'Sesi personal training Fortis Fit Jambi', caption: 'Coaching — foto konteks, ganti foto asli' },
+  { src: '/images/fortis-fit-4.webp', alt: 'Asesmen kebugaran member Fortis Fit Jambi', caption: 'Asesmen — foto konteks, ganti foto asli' },
+  { src: '/images/fortis-fit-5.webp', alt: 'Sauna kayu area pemulihan Fortis Fit Jambi', caption: 'Sauna & pemulihan — foto konteks, ganti foto asli' },
 ];

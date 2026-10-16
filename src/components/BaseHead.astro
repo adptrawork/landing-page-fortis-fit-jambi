@@ -7,7 +7,7 @@ interface Props {
   breadcrumb?: string;
 }
 import { business } from '../data/business';
-const { title, description, canonicalUrl, image = '/images/fortis-fit-1.jpg', breadcrumb = 'Beranda' } = Astro.props;
+const { title, description, canonicalUrl, image = '/images/fortis-fit-1.webp', breadcrumb = 'Beranda' } = Astro.props;
 const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
 const site = (Astro.site?.toString() ?? 'https://landing-page-fortis-fit-jambi.adi-putra-work1.workers.dev').replace(/\/$/, '');
 const home = `${site}/`;
