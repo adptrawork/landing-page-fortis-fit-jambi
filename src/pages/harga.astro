@@ -1,55 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import PriceCompare from '../components/PriceCompare.astro';
+import CtaBand from '../components/CtaBand.astro';
 import { business, prices, waLink } from '../data/business';
-const heroCta = waLink(`Halo ${business.name}, saya mau klaim free trial 1x.`);
+const heroCta = waLink(`Halo ${business.name}, saya mau tanya tarif akhir paket dan slot free trial.`);
+const pageDescription =
+  'Harga Fortis Fit Jambi: free trial, harian, mingguan, bulanan, personal trainer, tahunan. Harga estimasi dari price list IG — konfirmasi tarif akhir via WA.';
+const labels = [
+  { k: 'Terverifikasi', v: 'Tercantum di bio/reel Instagram resmi atau Linktree publik.' },
+  { k: 'Estimasi', v: 'Belum dipastikan pemilik — konfirmasi tarif via WA sebelum bayar.' },
+  { k: 'Klaim — cek IG', v: 'Promo yang disebut di reel price list IG; kuota dan syarat dicek admin.' },
+];
 ---
-<!-- Ref: Unbounce fitness — head (hook) + content + CTA -->
-<BaseLayout title="Harga transparan — Fortis Fit Jambi" description="Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289" canonicalPath="/Harga" image={business.ogImage}>
-  <section class="bg-stone-900 text-white" aria-labelledby="subhead">
-    <div class="max-w-7xl mx-auto px-4 pt-14 pb-12 md:pt-20 md:pb-16">
-      <nav class="font-mono-num text-xs uppercase tracking-[0.18em] text-white/60" aria-label="Breadcrumb"><a href="/" class="hover:text-white">Beranda</a> / Harga paket</nav>
-      <h1 id="subhead" class="mt-3 max-w-[20ch] text-3xl md:text-5xl font-black uppercase tracking-tighter">Harga transparan</h1>
-      <p class="mt-3 max-w-[60ch] text-base text-white/75">Perbandingan paket — 1 paket Terpopuler, tanpa biaya tersembunyi.</p>
-      <a href={heroCta} class="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-orange-700 px-7 text-sm font-black uppercase tracking-wide text-white transition hover:opacity-90">Klaim Free Trial</a>
+<!-- Ref: technical performance editorial — daftar harga bernomor, tabel runtuh jadi kartu -->
+<BaseLayout title="Harga & paket Fortis Fit Jambi — harian sampai tahunan" description={pageDescription} canonicalPath="/harga" image={business.ogImage} breadcrumb="Harga">
+
+  <section class="bg-ink" aria-labelledby="subhead">
+    <div class="mx-auto max-w-content px-4 pb-10 pt-12 md:px-6 md:pb-14 md:pt-16">
+      <nav class="num text-[11px] uppercase tracking-[0.16em] text-steel" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-marker">Beranda</a> <span class="text-steel/50">/</span> Harga
+      </nav>
+      <h1 id="subhead" class="rise mt-4 max-w-[20ch] font-display text-[clamp(2.2rem,6.5vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]" style="--i:1">Harga terbuka, tanpa biaya tersembunyi</h1>
+      <p class="rise mt-4 max-w-[58ch] text-base leading-relaxed text-steel" style="--i:2">Enam paket dengan label sumber yang jelas. Semua harga ditandai estimasi sampai dikonfirmasi admin.</p>
+      <a href={heroCta} class="rise mt-7 inline-flex min-h-[52px] items-center gap-2 bg-accent px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent-deep active:scale-[0.98]" style="--i:3">
+        Konfirmasi tarif
+      </a>
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 py-12 md:py-20" aria-label="Daftar harga">
-    <div class="grid grid-cols-1 gap-5 md:hidden">
-      {prices.map((p, i) => (
-        <article class:list={["relative rounded-3xl border p-6", i === 3 ? "border-orange-700 bg-stone-900 text-white" : "border-stone-200 bg-white"]}>
-          {i === 3 && <p class="absolute -top-3 left-6 rounded-full bg-orange-700 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-white">Terpopuler</p>}
-          <p class="font-mono-num text-[11px] font-bold uppercase tracking-[0.18em]">{p.badge}</p>
-          <h2 class="mt-1 font-extrabold">{p.name}</h2>
-          <p class="mt-1 font-mono-num text-2xl font-bold">{p.price}</p>
-          <p class="mt-1 text-sm opacity-80">{p.desc}</p>
-          <a href={heroCta} class="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full bg-orange-700 px-5 text-sm font-bold uppercase tracking-wide text-white">Pilih Paket</a>
-        </article>
+  <section class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16" aria-labelledby="daftar-harga">
+    <SectionHead index="01" label="Daftar harga" title="Pilih paketmu" note="6 paket" id="daftar-harga" />
+    <div class="mt-10">
+      <PriceCompare
+        items={prices.map((p) => ({ ...p, href: heroCta }))}
+        note="Harga estimasi mengacu pada reel price list IG @fortisfit_jambi. Free trial 1x + konsultasi disebut di reel yang sama. Tarif akhir, syarat, dan masa berlaku dikonfirmasi via WA 0812-9933-3289."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-content px-4 pb-12 md:px-6 md:pb-16" aria-labelledby="label">
+    <SectionHead index="02" label="Cara baca label" title="Apa arti tiap tanda" note="Transparansi data" id="label" />
+    <ul class="mt-10">
+      {labels.map((l) => (
+        <li class="rule grid grid-cols-1 gap-2 border-t border-steel/25 py-5 md:grid-cols-12 md:items-baseline">
+          <p class="label text-marker md:col-span-3">{l.k}</p>
+          <p class="max-w-[70ch] text-sm leading-relaxed text-steel md:col-span-9">{l.v}</p>
+        </li>
       ))}
-    </div>
-    <div class="hidden md:block">
-      <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {prices.map((p, i) => (
-          <article class:list={["relative flex flex-col rounded-3xl border p-6", i === 3 ? "border-orange-700 bg-stone-900 text-white md:-translate-y-2 shadow-xl" : "border-stone-200 bg-white"]}>
-            {i === 3 && <p class="absolute -top-3 left-6 rounded-full bg-orange-700 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-white">Terpopuler</p>}
-            <p class="font-mono-num text-[11px] font-bold uppercase tracking-[0.18em]">{p.badge}</p>
-            <h2 class="mt-2 font-extrabold">{p.name}</h2>
-            <p class="mt-1 font-mono-num text-2xl font-bold">{p.price}</p>
-            <p class="mt-2 text-sm opacity-80">{p.desc}</p>
-            <a href={heroCta} class="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full bg-orange-700 px-5 text-sm font-bold uppercase tracking-wide text-white">Pilih Paket</a>
-          </article>
-        ))}
-      </div>
-    </div>
-    <!-- Skeleton shimmer: placeholder saat harga dimuat -->
-    <div class="skeleton mt-6 hidden h-24 rounded-3xl bg-stone-200" aria-hidden="true"></div>
-    <p class="mt-4 text-xs text-stone-500">Harga estimasi Jambi — acuan reel price list IG @fortisfit_jambi. Konfirmasi tarif akhir via WA.</p>
+    </ul>
   </section>
-  <section class="max-w-7xl mx-auto px-4 pb-12 md:pb-20" aria-label="Ajakan">
-    <div class="rounded-3xl bg-stone-900 p-8 text-white md:p-10">
-      <p class="text-2xl font-black uppercase tracking-tight">Kunci harga terbaik minggu ini</p>
-      <p class="mt-2 text-sm text-white/70">Tanya slot & tarif akhir — gratis, tanpa komitmen.</p>
-      <a href={heroCta} class="mt-5 inline-flex min-h-[48px] items-center rounded-full bg-white px-8 text-sm font-black uppercase tracking-wide text-stone-900">Klaim Free Trial</a>
-    </div>
-  </section>
+
+  <CtaBand
+    title="Kunci tarif terbaikmu"
+    lead="Tanya slot dan tarif akhir — gratis, tanpa komitmen, dibalas sesuai jam operasional."
+    message={`Halo ${business.name}, saya mau tanya tarif akhir dan slot free trial.`}
+    waLabel="Tanya tarif"
+  />
 </BaseLayout>

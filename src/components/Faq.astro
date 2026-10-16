@@ -1,15 +1,19 @@
 ---
+interface Props { items?: { q: string; a: string }[]; }
 const { items = [] } = Astro.props as { items: { q: string; a: string }[] };
 ---
-<!-- Ref: Unbounce fitness — risk-reversal / objection handling -->
-<div class="divide-y divide-stone-200 rounded-3xl border border-stone-200 bg-white">
-  {items.map((f) => (
-    <details class="group px-6 py-4 [&_summary::-webkit-details-marker]:hidden">
-      <summary class="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 font-semibold">
-        <span>{f.q}</span>
-        <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-stone-300 transition group-open:rotate-45" aria-hidden="true">+</span>
+<!-- Ref: FAQ — objection handling, rule hairline + toggle mono -->
+<div class="rule border-t border-steel/25">
+  {items.map((f, i) => (
+    <details class="group rule border-t border-steel/25">
+      <summary class="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-6 py-4 [&::-webkit-details-marker]:hidden">
+        <span class="flex items-baseline gap-4">
+          <span class="num text-[11px] text-steel" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span class="font-display text-base font-bold tracking-tight md:text-lg">{f.q}</span>
+        </span>
+        <span class="num shrink-0 text-marker transition-transform duration-300 group-open:rotate-45" aria-hidden="true">+</span>
       </summary>
-      <p class="pb-2 text-sm leading-relaxed text-stone-600">{f.a}</p>
+      <p class="max-w-[72ch] pb-5 pl-[calc(1.5rem+2ch)] text-sm leading-relaxed text-steel">{f.a}</p>
     </details>
   ))}
 </div>

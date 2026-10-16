@@ -1,38 +1,91 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
 import { business, coaches, waLink } from '../data/business';
-const heroCta = waLink(`Halo ${business.name}, saya mau klaim free trial 1x.`);
+const waAsk = waLink(`Halo ${business.name}, saya mau tanya soal pendampingan coach & jadwal latihan.`);
+const pageDescription =
+  'Pendampingan latihan di Fortis Fit Jambi: coach beban, instruktur kelas grup, dan personal trainer. Ketersediaan serta tarif dikonfirmasi via WA 0812-9933-3289.';
 ---
-<!-- Ref: Unbounce fitness — head (hook) + content + CTA -->
-<BaseLayout title="Kenalan dengan coach — Fortis Fit Jambi" description="Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289" canonicalPath="/Pelatih" image={business.ogImage}>
-  <section class="bg-stone-900 text-white" aria-labelledby="subhead">
-    <div class="max-w-7xl mx-auto px-4 pt-14 pb-12 md:pt-20 md:pb-16">
-      <nav class="font-mono-num text-xs uppercase tracking-[0.18em] text-white/60" aria-label="Breadcrumb"><a href="/" class="hover:text-white">Beranda</a> / Pelatih & instruktur</nav>
-      <h1 id="subhead" class="mt-3 max-w-[20ch] text-3xl md:text-5xl font-black uppercase tracking-tighter">Kenalan dengan coach</h1>
-      <p class="mt-3 max-w-[60ch] text-base text-white/75">Coach & instruktur yang mendampingi tiap sesi latihanmu.</p>
-      <a href={heroCta} class="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-orange-700 px-7 text-sm font-black uppercase tracking-wide text-white transition hover:opacity-90">Klaim Free Trial</a>
+<!-- Ref: technical performance editorial — peran pelatih sebagai credential row, visual non-wajah -->
+<BaseLayout title="Pelatih & instruktur Fortis Fit Jambi — panduan latihan" description={pageDescription} canonicalPath="/pelatih" image={business.ogImage} breadcrumb="Pelatih">
+
+  <section class="bg-ink" aria-labelledby="subhead">
+    <div class="mx-auto max-w-content px-4 pb-10 pt-12 md:px-6 md:pb-14 md:pt-16">
+      <nav class="num text-[11px] uppercase tracking-[0.16em] text-steel" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-marker">Beranda</a> <span class="text-steel/50">/</span> Pelatih
+      </nav>
+      <h1 id="subhead" class="rise mt-4 max-w-[20ch] font-display text-[clamp(2.2rem,6.5vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]" style="--i:1">Didampingi, bukan dilepas</h1>
+      <p class="rise mt-4 max-w-[58ch] text-base leading-relaxed text-steel" style="--i:2">Halaman ini menjelaskan peran pendampingan yang tersedia. Nama dan daftar coach aktual tidak dipublikasikan di sini karena belum terverifikasi — konfirmasi lewat Instagram atau WA resmi.</p>
+      <a href={waAsk} class="rise mt-7 inline-flex min-h-[52px] items-center gap-2 bg-accent px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent-deep active:scale-[0.98]" style="--i:3">
+        <Icon name="wa" size={18} /> Tanya coach
+      </a>
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 py-12 md:py-20" aria-label="Daftar pelatih">
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {coaches.map((c) => (
-        <article class="rounded-3xl border border-stone-200 bg-white p-6">
-          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-orange-700 font-mono-num text-lg font-bold text-white" aria-hidden="true">{c.role.slice(0, 1)}</div>
-          <p class="mt-4 font-mono-num text-[11px] font-bold uppercase tracking-[0.18em] text-orange-700">{c.badge}</p>
-          <h2 class="mt-1 text-lg font-extrabold tracking-tight">{c.role}</h2>
-          <p class="mt-2 text-sm leading-relaxed text-stone-600">{c.desc}</p>
-          <a href={heroCta} class="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full border border-orange-700 px-5 text-sm font-bold uppercase tracking-wide text-orange-700 transition hover:bg-orange-700 hover:text-white">Tanya Coach</a>
-        </article>
-      ))}
+  <!-- Peran pendampingan: credential teks + visual non-wajah -->
+  <section class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16" aria-labelledby="peran">
+    <SectionHead index="01" label="Peran pendampingan" title="Siapa yang membantu di lantai" note="3 peran" id="peran" />
+    <div class="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <ul>
+          {coaches.map((c, i) => (
+            <li class="rule grid grid-cols-1 gap-3 border-t border-steel/25 py-6 md:grid-cols-12 md:items-baseline">
+              <span class="num text-xs text-marker md:col-span-1" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <div class="md:col-span-4">
+                <h3 class="font-display text-lg font-bold uppercase leading-tight tracking-tight">{c.role}</h3>
+              </div>
+              <div class="md:col-span-6">
+                <p class="text-sm leading-relaxed text-steel">{c.desc}</p>
+                <p class="num mt-2 text-[11px] uppercase tracking-[0.14em] text-steel">
+                  Status <span class="text-marker">{c.badge}</span> &middot; tarif &amp; jadwal via WA
+                </p>
+              </div>
+              <div class="md:col-span-1 md:text-right">
+                <a href={waAsk} class="num inline-flex min-h-[44px] items-center text-[11px] uppercase tracking-[0.14em] text-paper transition-colors hover:text-marker">Tanya</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <!-- Empty state bila daftar peran kosong -->
+        {coaches.length === 0 && (
+          <p class="rule border-t border-steel/25 py-8 text-sm text-steel">Belum ada peran pendampingan yang dipublikasikan. Hubungi admin via WA untuk info terbaru.</p>
+        )}
+        <p class="num mt-6 text-[11px] leading-relaxed uppercase tracking-[0.14em] text-steel">
+          Tanpa foto wajah yang diklaim sebagai coach &mdash; identitas pelatih belum terverifikasi publik.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="grid grid-cols-1 gap-px bg-steel/20">
+          <figure class="bg-ink p-5">
+            <img src="/images/fortis-fit-1.jpg" alt="Rak dumbel dan peralatan beban di area latihan Fortis Fit Jambi" width="800" height="533" loading="lazy" decoding="async" class="cut-lr aspect-[16/10] w-full object-cover" />
+            <figcaption class="num mt-4 text-[11px] uppercase tracking-[0.14em] text-steel">Area latihan beban &mdash; tempat pendampingan teknik</figcaption>
+          </figure>
+          <figure class="bg-ink p-5">
+            <img src="/images/fortis-fit-5.jpg" alt="Interior sauna kayu area pemulihan Fortis Fit Jambi" width="800" height="600" loading="lazy" decoding="async" class="cut-lr aspect-[4/3] w-full object-cover" />
+            <figcaption class="num mt-4 text-[11px] uppercase tracking-[0.14em] text-steel">Area pemulihan &mdash; penutup sesi latihan</figcaption>
+          </figure>
+        </div>
+        <dl class="rule mt-8 border-t border-steel/25 pt-4">
+          <div class="flex items-baseline justify-between gap-6 py-3 rule border-t border-steel/15">
+            <dt class="label text-steel">Kontak resmi</dt>
+            <dd class="num text-sm text-paper">0812-9933-3289</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-6 py-3">
+            <dt class="label text-steel">Daftar coach</dt>
+            <dd class="num text-sm text-paper">Via Instagram</dd>
+          </div>
+        </dl>
+      </div>
     </div>
-    <p class="mt-4 text-xs text-stone-500">Nama coach aktual dapat berubah — konfirmasi via kontak resmi sebelum datang.</p>
   </section>
-  <section class="max-w-7xl mx-auto px-4 pb-12 md:pb-20" aria-label="Ajakan">
-    <div class="rounded-3xl bg-stone-900 p-8 text-white md:p-10">
-      <p class="text-2xl font-black uppercase tracking-tight">Mau didampingi dari nol?</p>
-      <p class="mt-2 text-sm text-white/70">Ceritakan tujuanmu — coach bantu susun langkah pertama.</p>
-      <a href={heroCta} class="mt-5 inline-flex min-h-[48px] items-center rounded-full bg-white px-8 text-sm font-black uppercase tracking-wide text-stone-900">Klaim Free Trial</a>
-    </div>
-  </section>
+
+  <CtaBand
+    title="Mau didampingi dari nol?"
+    lead="Ceritakan tujuanmu — admin bantu arahkan ke coach atau kelas yang paling sesuai."
+    message={`Halo ${business.name}, saya mau didampingi dari nol. Bagaimana langkahnya?`}
+    waLabel="Mulai dari nol"
+  />
 </BaseLayout>

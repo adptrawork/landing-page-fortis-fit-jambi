@@ -1,0 +1,33 @@
+---
+interface Props { name: 'wa' | 'instagram' | 'pin' | 'clock' | 'arrow' | 'check' | 'external' | 'phone'; size?: number; class?: string; }
+const { name, size = 20, class: cls = '' } = Astro.props;
+const common = {
+  width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
+  stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round',
+  'stroke-linejoin': 'round', class: cls, 'aria-hidden': 'true', focusable: 'false',
+} as const;
+---
+{name === 'wa' && (
+  <svg {...common}><path d="M3.5 20.5l1.3-4a8 8 0 1 1 3.1 2.6z" /><path d="M8.6 9.2c.3-.6.6-.6.9-.6h.6c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .6.5.8 1.2 1.5 2.1 1.9.3.1.4.1.6-.1l.6-.7c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.3.4.5v.6c0 .4-.4.9-1 1.1-.5.2-1.2.2-2.4-.3-1.6-.7-3.2-2.2-3.9-3.8-.5-1.1-.4-1.9-.1-2.4z" /></svg>
+)}
+{name === 'instagram' && (
+  <svg {...common}><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none" /></svg>
+)}
+{name === 'pin' && (
+  <svg {...common}><path d="M12 21s6.5-5.3 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.7 12 21 12 21z" /><circle cx="12" cy="10.5" r="2.3" /></svg>
+)}
+{name === 'clock' && (
+  <svg {...common}><circle cx="12" cy="12" r="8.3" /><path d="M12 7.6V12l3 1.9" /></svg>
+)}
+{name === 'arrow' && (
+  <svg {...common}><path d="M5 12h13" /><path d="M13 6.5 18.5 12 13 17.5" /></svg>
+)}
+{name === 'check' && (
+  <svg {...common}><path d="M4.5 12.5 9.5 17.5 19.5 6.5" /></svg>
+)}
+{name === 'external' && (
+  <svg {...common}><path d="M14 4.5h5.5V10" /><path d="M19.5 4.5 11 13" /><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.5V7.5A1.5 1.5 0 0 1 5.5 6h4" /></svg>
+)}
+{name === 'phone' && (
+  <svg {...common}><path d="M7 3.5h3l1.3 3.4-2 1.4a11 11 0 0 0 5.4 5.4l1.4-2 3.4 1.3v3a1.6 1.6 0 0 1-1.8 1.6C12.3 17.6 6.4 11.7 5.4 5.3A1.6 1.6 0 0 1 7 3.5z" /></svg>
+)}

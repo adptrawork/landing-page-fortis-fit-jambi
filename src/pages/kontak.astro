@@ -1,35 +1,64 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MapFacade from '../components/MapFacade.astro';
+import SectionHead from '../components/SectionHead.astro';
+import LocationPanel from '../components/LocationPanel.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
 import { business, waLink } from '../data/business';
-const heroCta = waLink(`Halo ${business.name}, saya mau klaim free trial 1x.`);
+const waAsk = waLink(`Halo ${business.name}, saya mau tanya jadwal kelas dan slot free trial.`);
+const pageDescription =
+  'Kontak resmi Fortis Fit Jambi: WA 0812-9933-3289, Instagram @fortisfit_jambi, dan rute Maps ke Paal Lima. Buka Sen–Jum 07–22, Sab–Min 07–18 WIB.';
+const channels = [
+  { k: 'WhatsApp', v: '0812-9933-3289', href: `https://wa.me/${business.phone}`, icon: 'wa' as const, note: 'Nomor resmi dari bio Instagram' },
+  { k: 'Instagram', v: '@fortisfit_jambi', href: business.instagram, icon: 'instagram' as const, note: 'Jadwal kelas & price list ada di postingan/reel' },
+  { k: 'Google Maps', v: 'Rute ke lokasi', href: business.mapsUrl, icon: 'pin' as const, note: 'Kawasan Paal Lima, Kota Jambi' },
+];
 ---
-<!-- Ref: Unbounce fitness — head (hook) + content + CTA -->
-<BaseLayout title="Hubungi & kunjungi — Fortis Fit Jambi" description="Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289" canonicalPath="/Kontak" image={business.ogImage}>
-  <section class="bg-stone-900 text-white" aria-labelledby="subhead">
-    <div class="max-w-7xl mx-auto px-4 pt-14 pb-12 md:pt-20 md:pb-16">
-      <nav class="font-mono-num text-xs uppercase tracking-[0.18em] text-white/60" aria-label="Breadcrumb"><a href="/" class="hover:text-white">Beranda</a> / Kontak & lokasi</nav>
-      <h1 id="subhead" class="mt-3 max-w-[20ch] text-3xl md:text-5xl font-black uppercase tracking-tighter">Hubungi & kunjungi</h1>
-      <p class="mt-3 max-w-[60ch] text-base text-white/75">Kontak resmi, jam operasional, dan rute ke lokasi.</p>
-      <a href={heroCta} class="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-orange-700 px-7 text-sm font-black uppercase tracking-wide text-white transition hover:opacity-90">Klaim Free Trial</a>
+<!-- Ref: technical performance editorial — panel lokasi berwarna + kanal kontak ber-rule -->
+<BaseLayout title="Kontak & lokasi Fortis Fit Jambi, Paal Lima — Kota Jambi" description={pageDescription} canonicalPath="/kontak" image={business.ogImage} breadcrumb="Kontak">
+
+  <section class="bg-ink" aria-labelledby="subhead">
+    <div class="mx-auto max-w-content px-4 pb-10 pt-12 md:px-6 md:pb-14 md:pt-16">
+      <nav class="num text-[11px] uppercase tracking-[0.16em] text-steel" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-marker">Beranda</a> <span class="text-steel/50">/</span> Kontak
+      </nav>
+      <h1 id="subhead" class="rise mt-4 max-w-[20ch] font-display text-[clamp(2.2rem,6.5vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]" style="--i:1">Hubungi &amp; kunjungi</h1>
+      <p class="rise mt-4 max-w-[58ch] text-base leading-relaxed text-steel" style="--i:2">Satu sumber kebenaran untuk kontak, jam operasional, dan rute. Balasan mengikuti jam buka gym.</p>
+      <a href={waAsk} class="rise mt-7 inline-flex min-h-[52px] items-center gap-2 bg-accent px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent-deep active:scale-[0.98]" style="--i:3">
+        <Icon name="wa" size={18} /> Chat WhatsApp
+      </a>
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 py-12 md:py-20" aria-label="Info kontak">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-      <div class="md:col-span-5 rounded-3xl border border-stone-200 bg-white p-6 md:p-8">
-        <h2 class="text-xl font-extrabold tracking-tight">Kontak resmi</h2>
-        <p class="mt-2 text-sm text-stone-600">{business.address}<br />{business.hours}</p>
-        <div class="mt-5 flex flex-col gap-3">
-          <a href={heroCta} class="inline-flex min-h-[48px] items-center justify-center rounded-full bg-orange-700 px-6 text-sm font-bold uppercase tracking-wide text-white">Klaim Free Trial</a>
-          <a href={`https://wa.me/${business.phone}`} class="inline-flex min-h-[48px] items-center justify-center rounded-full border border-stone-300 px-6 text-sm font-bold uppercase tracking-wide">WA 0812-9933-3289</a>
-          <a href={business.instagram} class="inline-flex min-h-[48px] items-center justify-center rounded-full border border-stone-300 px-6 text-sm font-bold uppercase tracking-wide">Instagram</a>
-        </div>
-      </div>
-      <div class="md:col-span-7">
-        <MapFacade src={business.mapsEmbed} title="Peta lokasi" mapsUrl={business.mapsUrl} />
-        <p class="mt-3 text-sm text-stone-600">Buka rute via <a class="underline underline-offset-4 font-semibold" href={business.mapsUrl}>Google Maps</a>.</p>
-      </div>
-    </div>
+  <!-- Panel lokasi berwarna + MapFacade klik-untuk-muat -->
+  <LocationPanel id="lokasi" eyebrow="Lokasi, jam & peta" />
+
+  <section class="mx-auto max-w-content px-4 pb-12 md:px-6 md:pb-16" aria-labelledby="kanal">
+    <SectionHead index="01" label="Kanal resmi" title="Pilih cara menghubungi" note="3 kanal" id="kanal" />
+    <ul class="mt-10">
+      {channels.map((c) => (
+        <li class="rule border-t border-steel/25">
+          <a href={c.href} rel="noopener" class="group grid grid-cols-1 items-baseline gap-2 py-6 md:grid-cols-12 md:gap-4">
+            <span class="flex items-center gap-3 md:col-span-3">
+              <Icon name={c.icon} size={20} class="text-marker" />
+              <span class="label text-steel">{c.k}</span>
+            </span>
+            <span class="font-display text-xl font-bold uppercase tracking-tight text-paper transition-colors group-hover:text-marker md:col-span-4">{c.v}</span>
+            <span class="text-sm text-steel md:col-span-4">{c.note}</span>
+            <span class="num text-right text-[11px] uppercase tracking-[0.14em] text-steel md:col-span-1"><Icon name="external" size={16} class="inline" /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="num mt-6 max-w-[80ch] text-[11px] leading-relaxed uppercase tracking-[0.14em] text-steel">
+      Alamat lengkap mengikuti koordinasi IG/WA &mdash; kawasan dari Linktree publik. Konfirmasi sebelum datang pertama kali.
+    </p>
   </section>
+
+  <CtaBand
+    title="Amankan slot trial-mu"
+    lead="Free trial 1x plus konsultasi. Kirim pesan singkat, admin bantu atur waktunya."
+    message={`Halo ${business.name}, saya mau klaim free trial 1x dan tanya jadwal kelas.`}
+    waLabel="Klaim free trial"
+  />
 </BaseLayout>

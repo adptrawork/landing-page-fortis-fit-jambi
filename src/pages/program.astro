@@ -1,40 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProgramRow from '../components/ProgramRow.astro';
+import CtaBand from '../components/CtaBand.astro';
 import { business, programs, waLink } from '../data/business';
 const heroCta = waLink(`Halo ${business.name}, saya mau klaim free trial 1x.`);
+const pageDescription =
+  'Detail program Fortis Fit Jambi di Paal Lima: open gym area beban & kardio, kelas grup aerobik dan yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18.';
+const metaFor = (badge: string) => [`Status~${badge}`, 'Konfirmasi~IG / WA admin'];
 ---
-<!-- Ref: Unbounce fitness — head (hook) + content + CTA -->
-<BaseLayout title="Semua program & jadwal — Fortis Fit Jambi" description="Gas latihan di Fortis Fit Jambi: area beban, kelas aerobik & yoga, sauna, kamar mandi. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA 0812-9933-3289" canonicalPath="/Program" image={business.ogImage}>
-  <section class="bg-stone-900 text-white" aria-labelledby="subhead">
-    <div class="max-w-7xl mx-auto px-4 pt-14 pb-12 md:pt-20 md:pb-16">
-      <nav class="font-mono-num text-xs uppercase tracking-[0.18em] text-white/60" aria-label="Breadcrumb"><a href="/" class="hover:text-white">Beranda</a> / Program & kelas</nav>
-      <h1 id="subhead" class="mt-3 max-w-[20ch] text-3xl md:text-5xl font-black uppercase tracking-tighter">Semua program & jadwal</h1>
-      <p class="mt-3 max-w-[60ch] text-base text-white/75">Jadwal lengkap semua program latihan — pilih yang cocok dengan level & waktumu.</p>
-      <a href={heroCta} class="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-orange-700 px-7 text-sm font-black uppercase tracking-wide text-white transition hover:opacity-90">Klaim Free Trial</a>
+<!-- Ref: technical performance editorial — daftar program bernomor, border-t, meta mono -->
+<BaseLayout title="Semua program & jadwal Fortis Fit Jambi — beban & kelas" description={pageDescription} canonicalPath="/program" image={business.ogImage} breadcrumb="Program">
+
+  <section class="bg-ink" aria-labelledby="subhead">
+    <div class="mx-auto max-w-content px-4 pb-10 pt-12 md:px-6 md:pb-14 md:pt-16">
+      <nav class="num text-[11px] uppercase tracking-[0.16em] text-steel" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-marker">Beranda</a> <span class="text-steel/50">/</span> Program
+      </nav>
+      <h1 id="subhead" class="rise mt-4 max-w-[20ch] font-display text-[clamp(2.2rem,6.5vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]" style="--i:1">Semua program &amp; jadwal</h1>
+      <p class="rise mt-4 max-w-[58ch] text-base leading-relaxed text-steel" style="--i:2">Lima entri program dengan label sumber data yang jelas. Jadwal kelas terbaru selalu mengikuti postingan Instagram resmi.</p>
+      <a href={heroCta} class="rise mt-7 inline-flex min-h-[52px] items-center gap-2 bg-accent px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent-deep active:scale-[0.98]" style="--i:3">
+        Klaim free trial
+      </a>
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 py-12 md:py-20" aria-label="Daftar program">
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {programs.map((p) => (
-        <article class="flex flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white">
-          <img src={p.img} alt={p.alt} width="800" height="600" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-          <div class="flex flex-1 flex-col p-6">
-            <p class="font-mono-num text-[11px] font-bold uppercase tracking-[0.18em] text-orange-700">{p.badge}</p>
-            <h2 class="mt-2 text-lg font-extrabold tracking-tight">{p.name}</h2>
-            <p class="mt-2 text-sm leading-relaxed text-stone-600">{p.desc}</p>
-            <a href={heroCta} class="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full border border-orange-700 px-5 text-sm font-bold uppercase tracking-wide text-orange-700 transition hover:bg-orange-700 hover:text-white">Coba Trial</a>
-          </div>
-        </article>
+  <section class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16" aria-labelledby="daftar">
+    <SectionHead index="01" label="Indeks program" title="Pilih sesuai tujuanmu" note="5 entri" id="daftar" />
+    <div class="mt-10">
+      {programs.map((p, i) => (
+        <ProgramRow
+          index={String(i + 1).padStart(2, '0')}
+          name={p.name}
+          desc={p.desc}
+          badge={p.badge}
+          img={p.img}
+          alt={p.alt}
+          meta={metaFor(p.badge)}
+          href={heroCta}
+          ctaLabel="Jadwalkan trial"
+          flip={i % 2 === 1}
+        />
       ))}
     </div>
-    <p class="mt-3 text-xs text-stone-400">Foto konteks — ganti foto asli lokasi.</p>
+    <p class="num mt-8 text-[11px] uppercase tracking-[0.14em] text-steel">
+      Foto bersifat konteks &mdash; ganti dengan foto lokasi asli. <span class="text-marker">Terverifikasi</span> = klaim bio/reel IG resmi.
+    </p>
   </section>
-  <section class="max-w-7xl mx-auto px-4 pb-12 md:pb-20" aria-label="Ajakan">
-    <div class="rounded-3xl bg-stone-900 p-8 text-white md:p-10">
-      <p class="text-2xl font-black uppercase tracking-tight">Masih bingung pilih program?</p>
-      <p class="mt-2 text-sm text-white/70">Tanya gratis — admin bantu pilihkan sesuai level & tujuanmu.</p>
-      <a href={heroCta} class="mt-5 inline-flex min-h-[48px] items-center rounded-full bg-white px-8 text-sm font-black uppercase tracking-wide text-stone-900">Klaim Free Trial</a>
-    </div>
-  </section>
+
+  <CtaBand
+    title="Belum yakin mulai dari mana?"
+    lead="Tanya dulu, gratis. Admin bantu pilihkan program sesuai level dan tujuanmu."
+    message={`Halo ${business.name}, saya bingung pilih program. Bisa dibantu?`}
+    waLabel="Tanya admin"
+  />
 </BaseLayout>

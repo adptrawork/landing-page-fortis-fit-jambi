@@ -1,0 +1,13 @@
+---
+interface Props { index?: string; label: string; title: string; id: string; note?: string; }
+const { index, label, title, id, note } = Astro.props;
+---
+<!-- Ref: technical performance editorial — label mono + headline Space Grotesk -->
+<div class="rule flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 pt-4">
+  <div class="flex items-baseline gap-4">
+    {index && <span class="num text-xs text-marker" aria-hidden="true">{index}</span>}
+    <p class="label text-accent">{label}</p>
+  </div>
+  {note && <p class="num text-[11px] text-steel">{note}</p>}
+</div>
+<h2 id={id} class="mt-4 max-w-[22ch] font-display text-3xl font-bold uppercase leading-[0.98] tracking-tight md:text-5xl">{title}</h2>

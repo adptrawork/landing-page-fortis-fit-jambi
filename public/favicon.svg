@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">💄</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fortis Fit">
+  <rect width="64" height="64" fill="#111A28"/>
+  <path d="M0 0h64v52L0 64z" fill="#111A28"/>
+  <path d="M18 14h30v9H28v8h16v9H28v14h-10z" fill="#F5F6F2"/>
+  <rect x="10" y="14" width="4" height="40" fill="#C7F46E"/>
+  <rect x="6" y="14" width="4" height="40" fill="#3563D6"/>
+</svg>

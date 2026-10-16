@@ -1,18 +1,22 @@
 ---
-interface Item { value: string; label: string; }
-const { items = [], note = '', accent = 'orange-700' } = Astro.props as { items: Item[]; note?: string; accent?: string };
+interface Item { value: string; label: string; note?: string; }
+const { items = [], note = '' } = Astro.props as { items: Item[]; note?: string };
 ---
-<!-- Ref: NYSC — 1 warna pop + angka mono kontras -->
-<section class={`bg-${accent} text-white overflow-hidden`} aria-label="Statistik singkat">
-  <div class="max-w-7xl mx-auto px-4 py-10 md:py-12">
-    <dl class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {items.map((s) => (
-        <div class="border-l-2 border-white/30 pl-4">
-          <dd class="font-mono-num font-bold text-2xl md:text-3xl leading-none">{s.value}</dd>
-          <dt class="mt-1 text-xs uppercase tracking-[0.18em] text-white/75">{s.label}</dt>
-        </div>
-      ))}
-    </dl>
-    {note && <p class="mt-6 text-xs text-white/60">{note}</p>}
+<!-- Ref: metrik operasional — angka mono besar + label kecil (hanya data yang tersumber) -->
+<section class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-20" aria-labelledby="metrik">
+  <div class="rule flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 pt-4">
+    <p class="label text-accent">Metrik operasional</p>
+    <p class="num text-[11px] uppercase tracking-[0.14em] text-steel">Diperbarui 16 Okt 2026</p>
   </div>
+  <h2 id="metrik" class="sr-only">Data operasional Fortis Fit Jambi</h2>
+  <dl class="mt-8 grid grid-cols-2 gap-px bg-steel/20 md:grid-cols-4">
+    {items.map((s) => (
+      <div class="bg-ink p-5 md:p-7">
+        <dd class="num text-3xl font-medium leading-none tracking-tight text-paper md:text-5xl">{s.value}</dd>
+        <dt class="label mt-3 text-steel">{s.label}</dt>
+        {s.note && <p class="num mt-2 text-[10px] uppercase tracking-[0.14em] text-marker">{s.note}</p>}
+      </div>
+    ))}
+  </dl>
+  {note && <p class="mt-5 max-w-[80ch] text-xs leading-relaxed text-steel">{note}</p>}
 </section>

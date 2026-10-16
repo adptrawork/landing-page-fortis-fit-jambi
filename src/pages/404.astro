@@ -1,10 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 ---
-<BaseLayout title="404 — Halaman tidak ditemukan" description="Halaman tidak ditemukan.">
-  <div class="max-w-xl mx-auto px-4 py-20 text-center">
-    <h1 class="text-5xl font-extrabold">404</h1>
-    <p class="mt-4">Halaman tidak ditemukan.</p>
-    <a href="/" class="mt-6 inline-block underline">Kembali ke beranda</a>
-  </div>
+<!-- Ref: technical performance editorial — halaman tidak ditemukan -->
+<BaseLayout title="404 Error: Halaman tidak ditemukan — Fortis Fit Jambi" description="Halaman yang kamu cari tidak ditemukan di situs Fortis Fit Jambi. Kembali ke beranda atau lihat program, harga, dan kontak kami." canonicalPath="/404" breadcrumb="404">
+  <section class="mx-auto max-w-content px-4 py-20 md:px-6 md:py-28" aria-labelledby="notfound">
+    <p class="label text-accent">Error 404</p>
+    <h1 id="notfound" class="mt-4 font-display text-[clamp(3.5rem,14vw,8rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">Halaman tidak ditemukan</h1>
+    <p class="mt-5 max-w-[52ch] text-base leading-relaxed text-steel">Alamat yang kamu buka tidak ada. Coba kembali ke beranda atau langsung ke salah satu halaman berikut.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/" class="inline-flex min-h-[52px] items-center gap-2 bg-accent px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent-deep active:scale-[0.98]">Ke beranda</a>
+      <a href="/program" class="inline-flex min-h-[52px] items-center gap-2 border border-steel/40 px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:border-marker hover:text-marker active:scale-[0.98]">Program <Icon name="arrow" size={16} /></a>
+      <a href="/kontak" class="inline-flex min-h-[52px] items-center gap-2 border border-steel/40 px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:border-marker hover:text-marker active:scale-[0.98]">Kontak</a>
+    </div>
+  </section>
 </BaseLayout>

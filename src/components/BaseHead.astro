@@ -4,9 +4,21 @@ interface Props {
   description: string;
   canonicalUrl: string;
   image?: string;
+  breadcrumb?: string;
 }
-const { title, description, canonicalUrl, image = '/images/fortis-fit-1.jpg' } = Astro.props;
+import { business } from '../data/business';
+const { title, description, canonicalUrl, image = '/images/fortis-fit-1.jpg', breadcrumb = 'Beranda' } = Astro.props;
 const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
+const site = (Astro.site?.toString() ?? 'https://landing-page-fortis-fit-jambi.adi-putra-work1.workers.dev').replace(/\/$/, '');
+const home = `${site}/`;
+const crumbs = breadcrumb === 'Beranda'
+  ? [{ name: 'Beranda', item: home }]
+  : [{ name: 'Beranda', item: home }, { name: breadcrumb, item: canonicalUrl }];
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })),
+};
 const faq = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -32,37 +44,36 @@ const faq = {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,900&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,900&display=swap" /></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" /></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
 <meta name="generator" content={Astro.generator} />
 <link rel="canonical" href={canonicalUrl} />
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#111A28" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="id_ID" />
-<meta property="og:site_name" content="Fortis Fit Jambi — Gym Keras, Kelas Seru" />
+<meta property="og:site_name" content="Fortis Fit Jambi" />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:alt" content="Rak dumbel area beban Fortis Fit Jambi" />
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonicalUrl} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ExerciseGym",
   name: "Fortis Fit Jambi",
-  url: "https://fortisfit-jambi.pages.dev",
+  url: site,
+  telephone: `+${business.phone}`,
   image: ogImage,
   description: description,
   exerciseType: ["Aerobics", "Yoga", "Sauna"],
@@ -73,4 +84,5 @@ const faq = {
   address: { "@type": "PostalAddress", addressLocality: "Kota Jambi", addressRegion: "Jambi", addressCountry: "ID" },
   sameAs: ["https://www.instagram.com/fortisfit_jambi"]
 })} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
 <script type="application/ld+json" set:html={JSON.stringify(faq)} />

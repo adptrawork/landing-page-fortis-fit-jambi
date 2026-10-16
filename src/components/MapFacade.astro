@@ -1,14 +1,18 @@
 ---
+import Icon from './Icon.astro';
 interface Props { src: string; title: string; mapsUrl: string; label?: string }
-const { src, title, mapsUrl, label = 'Muat peta & buka rute' } = Astro.props;
+const { src, title, mapsUrl, label = 'Muat peta & rute' } = Astro.props;
 ---
-<!-- Maps facade: preview tombol -> suntik iframe saat klik (hemat ~7MB JS Google Maps saat load) -->
-<div class="map-facade relative aspect-video overflow-hidden rounded-3xl border border-stone-200 bg-stone-200" data-src={src} data-title={title}>
-  <div class="absolute inset-0 grid place-items-center bg-gradient-to-br from-stone-200 to-stone-300" aria-hidden="true">
-    <span class="font-mono-num text-4xl font-bold text-stone-400">MAP</span>
+<!-- Ref: MapFacade — iframe Google Maps hanya disuntik saat diklik (hemat ~7MB JS) -->
+<div class="map-facade relative aspect-video overflow-hidden border border-paper/25 bg-ink-deep" data-src={src} data-title={title}>
+  <div class="absolute inset-0 opacity-[0.18]" aria-hidden="true" style="background-image:linear-gradient(rgba(148,160,176,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(148,160,176,.6) 1px,transparent 1px);background-size:44px 44px"></div>
+  <div class="absolute inset-0 grid place-items-center" aria-hidden="true">
+    <span class="num text-5xl font-medium tracking-[0.3em] text-steel/40">MAP</span>
   </div>
   <a href={mapsUrl} class="absolute inset-0 grid place-items-center" data-map-link>
-    <span class="inline-flex min-h-[48px] items-center rounded-full bg-stone-900 px-7 text-sm font-bold uppercase tracking-wide text-white shadow-lg">{label}</span>
+    <span class="inline-flex min-h-[48px] items-center gap-2 bg-paper px-6 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink transition-transform hover:-translate-y-0.5 active:scale-[0.98]">
+      <Icon name="pin" size={16} /> {label}
+    </span>
   </a>
 </div>
 <script is:inline>
