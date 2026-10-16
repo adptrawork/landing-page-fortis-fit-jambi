@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business } from '../data/business';
+---
+<BaseLayout title={`Kontak ${business.name} — WA, IG & Rute`} description={`Hubungi Fortis Fit Jambi: WA 0812-9933-3289, IG @fortisfit_jambi. Senin–Jumat 07.00–22.00, weekend 07.00–18.00.`} canonicalPath="/kontak">
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="md:col-span-7">
+        <p class="text-sm font-medium text-rose-700">Kontak</p>
+        <h1 class="mt-2 text-4xl md:text-6xl tracking-tighter leading-none font-bold">Booking trial via WA</h1>
+        <p class="mt-3 text-base text-gray-600 max-w-[65ch]">Isi form, tekan kirim — pesan terformat rapi terbuka di WhatsApp 0812-9933-3289. Tanpa akun, tanpa antre telepon.</p>
+        <form id="book" class="mt-8 bg-white border border-slate-200/50 rounded-[2.5rem] p-8 space-y-4">
+          <div><label for="nama" class="text-sm font-medium">Nama</label><input id="nama" required placeholder="Nama kamu" class="mt-1 w-full border rounded-2xl px-4 py-3 min-h-[48px]" /></div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div><label for="tgl" class="text-sm font-medium">Tanggal rencana datang</label><input id="tgl" type="date" required class="mt-1 w-full border rounded-2xl px-4 py-3 min-h-[48px]" /></div>
+            <div><label for="sesi" class="text-sm font-medium">Kebutuhan</label><select id="sesi" class="mt-1 w-full border rounded-2xl px-4 py-3 min-h-[48px]"><option>Free trial + konsultasi</option><option>Latihan harian</option><option>Ikut kelas grup</option><option>Personal training</option></select></div>
+          </div>
+          <p id="err" class="hidden text-sm text-red-600">Lengkapi nama dan tanggal (tidak boleh lampau).</p>
+          <button class="bg-rose-700 text-white px-7 py-3.5 rounded-full font-medium active:scale-[0.98]">Kirim via WhatsApp</button>
+        </form>
+      </div>
+      <div class="md:col-span-5">
+        <div class="bg-white border border-slate-200/50 rounded-[2.5rem] overflow-hidden">
+          <img src="/images/fortis-fit-5.jpg" alt="Fasilitas pemulihan gym Fortis Fit Jambi" width="800" height="600" loading="lazy" class="w-full aspect-[16/9] object-cover" />
+          <div class="p-8">
+            <p class="font-semibold">Info kunjungan</p>
+            <p class="mt-2 text-sm text-gray-600">{business.address}</p>
+            <p class="mt-1 text-sm text-gray-600">{business.hours}</p>
+            <p class="mt-1 text-sm text-gray-600">WA: 0812-9933-3289 (bio IG) • IG: @fortisfit_jambi</p>
+            <a class="mt-4 inline-block underline" href={business.mapsUrl}>Rute ke lokasi</a>
+          </div>
+        </div>
+        <p class="mt-3 text-xs text-zinc-400">Sumber foto: Unsplash (bebas lisensi) — ganti foto asli gym.</p>
+      </div>
+    </div>
+    <div class="mt-8 rounded-[2.5rem] overflow-hidden border border-slate-200/50 aspect-video bg-zinc-100">
+      <iframe title="Peta Fortis Fit Jambi" src={business.mapsEmbed} loading="lazy" class="w-full h-full"></iframe>
+    </div>
+  </section>
+<script is:inline>
+document.getElementById('book').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var nama = document.getElementById('nama').value.trim();
+  var tgl = document.getElementById('tgl').value;
+  var sesi = document.getElementById('sesi').value;
+  var err = document.getElementById('err');
+  var today = new Date().toISOString().slice(0,10);
+  if (!nama || !tgl || tgl < today) { err.classList.remove('hidden'); return; }
+  err.classList.add('hidden');
+  var msg = 'Halo Fortis Fit, saya ' + nama + '. Rencana datang tanggal ' + tgl + '. Kebutuhan: ' + sesi + '. Apakah slot trial masih ada?';
+  window.open('https://wa.me/6281299333289?text=' + encodeURIComponent(msg), '_blank');
+});
+</script>
+</BaseLayout>
