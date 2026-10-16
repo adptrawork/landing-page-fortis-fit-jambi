@@ -56,7 +56,7 @@ export const programs = [
     badge: 'Terverifikasi',
     desc: 'Bio IG resmi menyebut Bathrooms. Cocok latihan sebelum/sesudah aktivitas.',
     img: '/images/fortis-fit-5.jpg',
-    alt: 'Area pemulihan dan fasilitas bilas gym Fortis Fit Jambi',
+    alt: 'Sauna kayu area pemulihan Fortis Fit Jambi',
   },
 ];
 
@@ -92,5 +92,5 @@ export const gallery = [
   { src: '/images/fortis-fit-2.jpg', alt: 'Kelas grup aerobik Fortis Fit Jambi', caption: 'Kelas grup — foto konteks, ganti foto asli' },
   { src: '/images/fortis-fit-3.jpg', alt: 'Sesi personal training Fortis Fit Jambi', caption: 'Coaching — foto konteks, ganti foto asli' },
   { src: '/images/fortis-fit-4.jpg', alt: 'Asesmen kebugaran member Fortis Fit Jambi', caption: 'Asesmen — foto konteks, ganti foto asli' },
-  { src: '/images/fortis-fit-5.jpg', alt: 'Fasilitas pemulihan Fortis Fit Jambi', caption: 'Fasilitas — foto konteks, ganti foto asli' },
+  { src: '/images/fortis-fit-5.jpg', alt: 'Sauna kayu area pemulihan Fortis Fit Jambi', caption: 'Sauna & pemulihan — foto konteks, ganti foto asli' },
 ];
