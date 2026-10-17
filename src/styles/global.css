@@ -68,6 +68,9 @@
 .cut-r  { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), 0 100%); }
 .cut-tr { clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%); }
 
+/* Sudut gambar yang difoto-tekst: potongan asimetris */
+.clip-corner { clip-path: polygon(0 3%, 100% 0, 100% 95%, 92% 100%, 0 100%, 0 5%); }
+
 /* ---------------------------------------------------------------
    Entrance: hanya transform/opacity, stagger via --i
    --------------------------------------------------------------- */
@@ -147,3 +150,76 @@ a:active, button:active, summary:active { transform: scale(0.98); }
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---------------------------------------------------------------
+   Hero: blueprint / technical grid background
+   Fixed, pointer-events-none pseudo-element — lives on the hero
+   block only, never on a scrolling container.
+   --------------------------------------------------------------- */
+.hero-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-grid::before,
+.hero-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+}
+.hero-grid::before {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 0, transparent 0 16px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 0, transparent 0 16px);
+  background-size: 16px 16px;
+}
+.hero-grid::after {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.09) 0 0, transparent 0 160px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.09) 0 0, transparent 0 160px);
+  background-size: 160px 160px;
+}
+
+/* Outlined, condensed display type (stroke keeps counter open on dark bg) */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Corner bracket: blueprint corner marks on clipped image wrapper */
+.corner-bracket {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  z-index: 2;
+}
+.corner-bracket::before,
+.corner-bracket::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+}
+.corner-bracket::after {
+  transform: scale(0.55);
+  border-color: rgba(53, 99, 214, 0.55);
+}
+.corner-bracket--tl { top: -1px; left: -1px; }
+.corner-bracket--tl::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.corner-bracket--tl::after { top: 2px; left: 2px; border-right: none; border-bottom: none; }
+.corner-bracket--tr { top: -1px; right: -1px; }
+.corner-bracket--tr::before { top: 0; right: 0; border-left: none; border-bottom: none; }
+.corner-bracket--tr::after { top: 2px; right: 2px; border-left: none; border-bottom: none; }
+.corner-bracket--bl { bottom: -1px; left: -1px; }
+.corner-bracket--bl::before { bottom: 0; left: 0; border-right: none; border-top: none; }
+.corner-bracket--bl::after { bottom: 2px; left: 2px; border-right: none; border-top: none; }
+.corner-bracket--br { bottom: -1px; right: -1px; }
+.corner-bracket--br::before { bottom: 0; right: 0; border-left: none; border-top: none; }
+.corner-bracket--br::after { bottom: 2px; right: 2px; border-left: none; border-top: none; }
+
+

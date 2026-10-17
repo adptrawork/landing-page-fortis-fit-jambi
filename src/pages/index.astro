@@ -14,13 +14,6 @@ const heroCta = waLink(`Halo ${business.name}, saya mau klaim free trial 1x. Apa
 const pageDescription =
   'Latihan di Fortis Fit Jambi, Paal Lima: area beban & kardio, kelas aerobik dan yoga, sauna, bilas. Buka Sen–Jum 07–22, weekend 07–18. Klaim free trial via WA.';
 
-const specs = [
-  { k: 'Lokasi', v: 'Paal Lima, Kota Jambi' },
-  { k: 'Buka', v: 'Sen–Jum 07–22' },
-  { k: 'Weekend', v: 'Sab–Min 07–18' },
-  { k: 'Trial', v: '1x + konsultasi' },
-];
-
 const metrics = [
   { value: '4.140', label: 'Pengikut Instagram', note: 'Terverifikasi' },
   { value: '07–22', label: 'Jam buka Sen–Jum', note: 'Terverifikasi' },
@@ -51,18 +44,50 @@ const metaFor = (badge: string) => [
 <!-- Ref: technical performance editorial — headline oversized asimetris + indeks program bernomor -->
 <BaseLayout title={business.title} description={pageDescription} canonicalPath="/" image={business.ogImage} breadcrumb="Beranda">
 
-  <!-- 01 HERO: asimetris, headline oversized, angka mono, CTA — dilarang center -->
-  <section class="relative overflow-hidden bg-ink" aria-labelledby="hero">
-    <div class="mx-auto grid max-w-content grid-cols-1 items-center gap-10 px-4 py-14 md:px-6 md:py-20 lg:min-h-[100dvh] lg:grid-cols-12 lg:gap-8">
-      <div class="lg:col-span-7">
-        <p class="label rise text-accent" style="--i:0">Gym + kelas &middot; Kota Jambi</p>
-        <h1 id="hero" class="rise mt-4 font-display text-[clamp(2.6rem,8.4vw,6rem)] font-bold uppercase leading-[0.9] tracking-[-0.03em]" style="--i:1">
-          Latihan yang<br />terukur, bukan<br /><span class="marker-mark">sekadar niat</span>
+  <section id="hero" class="relative overflow-hidden bg-ink" aria-labelledby="hero-heading">
+    <!-- Ref: Awwwards blueprint / technical-drawing editorial — oversized outlined display type, hairline annotation lines, mono data labels, graph-paper background -->
+    <!-- Graph-paper background: fixed, pointer-events-none, never on a scrolling container -->
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <div class="mx-auto grid max-w-content grid-cols-1 gap-10 px-4 py-14 md:px-6 md:py-24 lg:grid-cols-12 lg:gap-10 lg:py-28">
+      <!-- Kiri: tipografi skala besar + anotasi teknis (asimetris, bukan center) -->
+      <div class="lg:col-span-7 border-l border-steel/20 pl-6 md:pl-8 relative z-10">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3" style="--i:0">
+          <span class="num text-marker font-bold" aria-hidden="true">01</span>
+          <span class="text-steel/40" aria-hidden="true">&middot;</span>
+          <p class="label text-accent">Gym + kelas &middot; Kota Jambi</p>
+        </div>
+
+        <div class="rule mt-2 md:mt-4 border-t border-steel/20"></div>
+
+        <h1 id="hero-heading" class="rise mt-5 md:mt-8 font-display font-bold text-[clamp(2rem,15vw,5.6rem)] uppercase leading-[0.9] tracking-[-0.035em] text-outline" style="--i:1">
+          Latihan yang<br class="hidden sm:block" />
+          terukur,<br class="hidden sm:block" />
+          bukan sekadar <span class="marker-mark">niat</span>
         </h1>
-        <p class="rise mt-6 max-w-[54ch] text-base leading-relaxed text-steel" style="--i:2">
+
+        <div class="rule mt-6 md:mt-8 border-t border-steel/20"></div>
+
+        <p class="rise mt-6 md:mt-8 max-w-[54ch] text-base leading-relaxed text-steel" style="--i:2">
           Area beban &amp; kardio, kelas grup aerobik dan yoga, sauna, serta kamar mandi bilas. Pusat kebugaran di Paal Lima, Jl. Pangeran Hidayat, Kota Jambi.
         </p>
-        <div class="rise mt-8 flex flex-wrap gap-3" style="--i:3">
+
+        <dl class="rise mt-10 md:mt-12 grid grid-cols-3 gap-4 md:gap-6 border border-steel/15 p-4 md:p-5" style="--i:4">
+          <div class="flex flex-col gap-1 pt-2">
+            <dt class="label text-steel/60">Sets</dt>
+            <dd class="num text-sm font-bold text-paper">04</dd>
+          </div>
+          <div class="flex flex-col gap-1 pt-2">
+            <dt class="label text-steel/60">Reps</dt>
+            <dd class="num text-sm font-bold text-paper">08&ndash;12</dd>
+          </div>
+          <div class="flex flex-col gap-1 pt-2">
+            <dt class="label text-steel/60">RM</dt>
+            <dd class="num text-sm font-bold text-paper">70&ndash;85%</dd>
+          </div>
+        </dl>
+
+        <div class="rise mt-8 md:mt-10 flex flex-wrap gap-3" style="--i:3">
           <a href={heroCta} class="inline-flex min-h-[52px] items-center gap-2 bg-accent px-6 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent-deep active:scale-[0.98]">
             <Icon name="wa" size={18} /> Klaim free trial
           </a>
@@ -70,21 +95,21 @@ const metaFor = (badge: string) => [
             Lihat program <Icon name="arrow" size={16} />
           </a>
         </div>
-        <p class="num rise mt-6 text-[11px] uppercase tracking-[0.16em] text-steel" style="--i:4">
+
+        <p class="num rise mt-6 text-[11px] uppercase tracking-[0.16em] text-steel" style="--i:5">
           Program inti: open gym + kelas grup &middot; kelas lain cek jadwal IG
         </p>
       </div>
 
-      <div class="rise lg:col-span-5" style="--i:2">
-        <dl class="rule border-t border-steel/25">
-          {specs.map((s) => (
-            <div class="rule flex items-baseline justify-between gap-6 border-t border-steel/25 py-4">
-              <dt class="label text-steel">{s.k}</dt>
-              <dd class="num text-sm text-paper">{s.v}</dd>
-            </div>
-          ))}
-        </dl>
-        <img src="/images/fortis-fit-1.webp" alt="Rak dumbel area beban gym Fortis Fit Jambi" width="800" height="533" loading="eager" fetchpriority="high" decoding="async" class="cut-lr mt-8 aspect-[16/10] w-full object-cover" />
+      <!-- Kanan: gambar dalam bentuk sudut dipotong dengan tanda sudut (corner brackets) -->
+      <div class="lg:col-span-5 relative z-10" style="--i:6">
+        <div class="relative clip-corner aspect-[16/10] w-full overflow-hidden border border-steel/25">
+          <img src="/images/fortis-fit-1.webp" alt="Rak dumbel area beban gym Fortis Fit Jambi" width="800" height="533" loading="eager" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover block" />
+          <span class="corner-bracket corner-bracket--tl" aria-hidden="true"></span>
+          <span class="corner-bracket corner-bracket--tr" aria-hidden="true"></span>
+          <span class="corner-bracket corner-bracket--bl" aria-hidden="true"></span>
+          <span class="corner-bracket corner-bracket--br" aria-hidden="true"></span>
+        </div>
         <p class="num mt-3 text-[10px] uppercase tracking-[0.14em] text-steel">Foto konteks area beban &mdash; ganti dengan foto lokasi asli.</p>
       </div>
     </div>
@@ -92,6 +117,14 @@ const metaFor = (badge: string) => [
 
   <!-- 02 GAMBAR DIAGONAL: potongan miring ringan, statis saat reduced motion -->
   <section class="relative overflow-hidden bg-ink" aria-label="Suasana latihan">
+    <div class="mx-auto max-w-content px-4 md:px-6">
+      <div class="flex flex-wrap items-center gap-2 md:mb-8">
+        <span class="num text-marker font-bold" aria-hidden="true">02</span>
+        <span class="text-steel/40" aria-hidden="true">&middot;</span>
+        <p class="label text-accent">Suasana latihan</p>
+      </div>
+      <div class="rule border-t border-steel/25 mb-6"></div>
+    </div>
     <img src="/images/fortis-fit-2.webp" alt="Suasana kelas grup aerobik di gym Fortis Fit Jambi" width="800" height="533" loading="lazy" decoding="async" class="cut-lr h-[46vh] min-h-[280px] w-full object-cover md:h-[64vh]" />
     <div class="num mx-auto flex max-w-content flex-wrap items-center justify-between gap-x-8 gap-y-2 px-4 py-4 text-[10px] uppercase tracking-[0.16em] text-steel md:px-6">
       <span>Arena latihan &mdash; kelas grup &amp; area beban</span>
